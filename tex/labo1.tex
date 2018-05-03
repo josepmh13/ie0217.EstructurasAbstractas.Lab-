@@ -1,0 +1,231 @@
+\section{Introducción}
+Esta es la introducción
+\subsection{Objetivos}
+Texto grande:
+\begin{huge}
+Hacer una demostración.
+\end{huge}
+
+\subsubsection{Listas}
+Lista con viñetas:
+\begin{itemize}
+\item Ob1.
+\item Ob2.
+\end{itemize}
+
+Lista numerada:
+\begin{enumerate}
+\item No 1.
+\item No 2.
+\end{enumerate}
+
+\section*{Sección no numerada}
+Fin de sección.
+
+\section{Matemática básica}
+
+\subsection{Fundamentos}
+Símbolos entre el texto: $a^2 + b^2 = c^2$.
+
+Función definida por casos:
+\begin{equation}
+f(x) = %
+\begin{cases}
+	1	& \text{Si } x > 0 \\
+	-1	& \text{Si } x < 0 \\
+	0   & \text{Si } x = 0
+\end{cases}
+\end{equation}
+
+Potencias y raíces:
+\begin{equation}
+\sqrt{b^2 - 4ac}
+\end{equation}
+
+Fracciones
+\begin{equation}
+\frac{a^2}{(b + c)^2} + \frac{1}{n}
+\end{equation}
+
+Agrupadores de tamaño variable:
+\begin{equation}
+\Big[ \Big( \frac{1}{n} + x^2 \Big) - k\big(x + 1\big)^3 \Big]
+\end{equation}
+
+Matrices (como ecuación no numerada):
+\begin{equation*}
+ \left(
+    \begin{array}{ccc}
+        a & b & c \\
+        d & e & f \\
+        g & h & i
+    \end{array}
+\right)
+\end{equation*}
+
+Ambiente ``ecuación'' con sumatoria (promedio):
+\begin{equation}
+\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i
+\label{media}
+\end{equation}
+
+Ambiente ``ecuación'' con integral:
+\begin{equation}
+\int _a ^b f(x) dx
+\end{equation}
+
+\subsection{Ejemplos de símbolos y constantes}
+
+Volumen de una esfera:
+\begin{equation}
+\frac{4}{3} \pi r^3
+\end{equation}
+
+Regla trapezoidal uniforme:
+\begin{equation}
+\int_a ^b f(x)dx \approx \sum_{k=1}{N} \big( f(x_{k+1}) + f(x_k) \big)
+\end{equation}
+
+Varianza:
+\begin{equation}
+\sigma^2 = \frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^2
+\end{equation}
+
+donde $\mu$ es la media definida en \ref{media}.
+\newline
+
+Y otros símbolos:
+\begin{itemize}
+\item Derivadas parciales: $\dfrac{\partial f}{\partial x}$
+
+\item Letras griegas: $\alpha, \beta, \gamma, \Gamma, \delta, \Delta, \sigma, \Sigma, \ldots$.
+
+\item Fórmulas: $\forall x\exists y ~|~ x \in C \land y \in A \cap B$, $\nexists n ~|~ N \cup \{n\} = \emptyset$
+
+\item Símbolos adicionales: $\mathbb{Z}, \mathbb{N}, \mathbb{R}$
+
+\item Y más: $\mathscr{A}, \mathscr{B}, \mathscr{Z}$
+\end{itemize}
+
+\section{Imágenes y figuras}
+
+
+Figura centrada:
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.8]{imgL1/cosme.jpg}
+\caption{Cosme Fulanito}
+\label{fig:cosme}
+\end{figure}
+La figura \ref{fig:cosme} muestra al destacado autor de este trabajo.
+
+Imagen a la derecha:
+
+\begin{flushright}
+\includegraphics[scale=0.5]{imgL1/cosme.jpg}
+\end{flushright}
+
+
+
+
+\section{Tablas}
+Tablita:
+
+\begin{table}[ht]
+\begin{center}
+    \begin{tabular}{ c | c | c }
+        1 & 2 & 3 \\ 
+        \hline 
+        4 & 5 & 6 \\  
+        7 & 8 & 9    
+    \end{tabular}
+\end{center}
+\caption{Tabla pequeña}
+\end{table}
+tabla larga partida en paginas:\\
+
+
+\begin{longtable}{|c|c|c|c|}
+        \hline
+        \textbf{$\Delta \tau$ (píxeles)} & \textbf{$\Delta \rho$ (píxeles)} & \textbf{$\Delta \phi$ (grados)} & \textbf{Clasificador} \\  
+        \hline
+        \endhead
+        1 & 1 & 0,5 & K-Means \\ \hline
+        1 & 1 & 0,5 & SMO \\ \hline
+        1 & 1 & 0,5 & LogitBoost \\ \hline
+        \ldots & ... & ... & ... \\ \hline
+        1 & 1 & 1 & K-Means \\ \hline
+        1 & 1 & 1 & SMO \\ \hline
+        ... & ... & ... & ... \\ \hline
+        1 & 1 & 2 & K-Means \\ \hline
+        1 & 1 & 2 & SMO \\ \hline
+        ... & ... & ... & ... \\ \hline
+        3 & 3 & 2 & BayesNet \\ \hline
+        1 & 1 & 0,5 & K-Means \\ \hline
+        1 & 1 & 0,5 & SMO \\ \hline
+        1 & 1 & 0,5 & LogitBoost \\ \hline
+        ... & ... & ... & ... \\ \hline
+        1 & 1 & 1 & K-Means \\ \hline
+        1 & 1 & 1 & SMO \\ \hline
+        ... & ... & ... & ... \\ \hline
+        1 & 1 & 2 & K-Means \\ \hline
+        1 & 1 & 2 & SMO \\ \hline
+        ... & ... & ... & ... \\ \hline
+        3 & 3 & 2 & BayesNet \\ \hline
+        1 & 1 & 0,5 & K-Means \\ \hline
+        1 & 1 & 0,5 & SMO \\ \hline
+        1 & 1 & 0,5 & LogitBoost \\ \hline
+        ... & ... & ... & ... \\ \hline
+        1 & 1 & 1 & K-Means \\ \hline
+        1 & 1 & 1 & SMO \\ \hline
+        ... & ... & ... & ... \\ \hline
+        1 & 1 & 2 & K-Means \\ \hline
+        1 & 1 & 2 & SMO \\ \hline
+        ... & ... & ... & ... \\ \hline
+        3 & 3 & 2 & BayesNet \\ \hline
+        1 & 1 & 1 & K-Means \\ \hline
+        1 & 1 & 1 & SMO \\ \hline
+        ... & ... & ... & ... \\ \hline
+        1 & 1 & 2 & K-Means \\ \hline
+        1 & 1 & 2 & SMO \\ \hline
+        ... & ... & ... & ... \\ \hline
+        3 & 3 & 2 & BayesNet \\ \hline
+        1 & 1 & 0,5 & K-Means \\ \hline
+        1 & 1 & 0,5 & SMO \\ \hline
+        1 & 1 & 0,5 & LogitBoost \\ \hline
+        ... & ... & ... & ... \\ \hline
+        1 & 1 & 1 & K-Means \\ \hline
+        1 & 1 & 1 & SMO \\ \hline
+        ... & ... & ... & ... \\ \hline
+        1 & 1 & 2 & K-Means \\ \hline
+        1 & 1 & 2 & SMO \\ \hline
+        ... & ... & ... & ... \\ \hline
+        3 & 3 & 2 & BayesNet \\ \hline
+        1 & 1 & 1 & K-Means \\ \hline
+        1 & 1 & 1 & SMO \\ \hline
+        ... & ... & ... & ... \\ \hline
+        1 & 1 & 2 & K-Means \\ \hline
+        1 & 1 & 2 & SMO \\ \hline
+        ... & ... & ... & ... \\ \hline
+        3 & 3 & 2 & BayesNet \\ \hline
+        1 & 1 & 0,5 & K-Means \\ \hline
+        1 & 1 & 0,5 & SMO \\ \hline
+        1 & 1 & 0,5 & LogitBoost \\ \hline
+        ... & ... & ... & ... \\ \hline
+        1 & 1 & 1 & K-Means \\ \hline
+        1 & 1 & 1 & SMO \\ \hline
+        ... & ... & ... & ... \\ \hline
+        1 & 1 & 2 & K-Means \\ \hline
+        1 & 1 & 2 & SMO \\ \hline
+        ... & ... & ... & ... \\ \hline
+        3 & 3 & 2 & BayesNet \\ \hline
+        
+    
+    \caption{Grupos estudiados en el experimento B.}
+    \label{tab:gruposB}
+\end{longtable}
+
+\section{Uso de referencias bibliográficas}
+Para citar trabajos se utiliza la instrucción \textbf{cite} \cite{Bonaparte75}.
+
+Dos o más se pueden separar por coma \cite{Brown, Fulanito1999}.
