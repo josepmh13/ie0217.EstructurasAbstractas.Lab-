@@ -14,6 +14,67 @@
 \usepackage{graphicx, subfigure}
 \usepackage[]{tikz}
 \usepackage{pbox}
+\definecolor{bl}{rgb}{0.6602, 0.796875, 0.8862}
+\definecolor{cl}{rgb}{0.8359, 0.9140625, 0.96875}
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+\definecolor{p1}{rgb}{1.0,0.698,0.4}
+\usetikzlibrary{shadows,arrows.meta}
+\usepackage{adjustbox}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{multirow}
+\usepackage{colortbl}
+\definecolor{lightgray}{gray}{0.9}
+\definecolor{bg1}{rgb}{0.8,1.0,0.8}
+\usepackage{forest}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes,snakes}
+\usetikzlibrary{arrows.meta, shapes.geometric, calc, shadows}
+\colorlet{mygreen}{green!75!black}
+\colorlet{col1in}{red!30}
+\colorlet{col1out}{red!40}
+\colorlet{col2in}{mygreen!40}
+\colorlet{col2out}{mygreen!50}
+\colorlet{col3in}{blue!30}
+\colorlet{col3out}{blue!40}
+\colorlet{col4in}{mygreen!20}
+\colorlet{col4out}{mygreen!30}
+\colorlet{col5in}{blue!10}
+\colorlet{col5out}{blue!20}
+\colorlet{col6in}{blue!20}
+\colorlet{col6out}{blue!30}
+\colorlet{col7out}{orange}
+\colorlet{col7in}{orange!50}
+\colorlet{col8out}{orange!40}
+\colorlet{col8in}{orange!20}
+\colorlet{linecol}{blue!60}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{calc,positioning,shadows.blur,decorations.pathreplacing}
+\usepackage{etoolbox}
+% Define block styles
+\tikzstyle{blockz} = [draw, fill=blue!20, rectangle,minimum height=3em, 		minimum width=3em]
+\tikzstyle{tri} = [draw, fill=blue!20, triangle,minimum height=3em, minimum 	width=3em]
+\tikzstyle{sum} = [draw, fill=blue!20,circle,minimum height=1.5em]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+\tikzstyle{decision} = [diamond, draw, fill=bl!30,textwidth=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=bl!60,text width=8em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{bigblock} = [rectangle, draw, fill=yellow!20, 
+text width=16em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{block1} = [rectangle, draw, fill=bl!60, 
+text width=10em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{block2} = [rectangle, draw, fill=yellow!20, 
+text width=10em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{block3} = [rectangle, draw, fill=mygreen!20, 
+text width=10em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, circle,text centered, fill=bl!60,minimum 			height=2.5em]
+\tikzstyle{cloud1} = [draw, ellipse,text centered, fill=yellow!20,minimum 		height=2.5em]
+\tikzstyle{cloudZ} = [draw, circle,text centered, fill=yellow!20,minimum 			height=2.5em]
+\tikzstyle{blockZ} = [rectangle, draw, fill=bl!60,text width=2em, text 			centered, rounded corners, minimum height=3.5em]
+
 
 %Matemática
 \usepackage{amsmath}
@@ -67,7 +128,13 @@
 \usepackage{unitsdef}	  
 \renewcommand{\unitvaluesep}{\hspace*{2pt}}
 
-\title{ \Large \underline{ \textbf{Reporte de Laboratorio 4: Programación genérica}}}
+% -> PROPUESTA PROYECTO 0
+%\title{ \Large \underline{ \textcolor{DarkGreen} {\textbf{Propuesta Proyecto 0: Arte Digital a partir de Archivos Binarios }}}}
+
+% -> LABORATORIO 5
+\title{ \Large \underline{ \textcolor{DarkGreen} {\textbf{Laboratorio 5: Complejidad computacional y análisis de
+algoritmos}}}}
+
 \author{ $\rightarrow$ David Elizondo Garro, [B32359]\\ 
 		 $\rightarrow$ José Adrián Sanabria Roselló, [B46420]\\ 
          $\rightarrow$ José Pablo Martínez Hernández, [B34024]\\
@@ -102,12 +169,17 @@
 %%%%%%%%%%%%%%%%%%
 %--> LABORATORIO 4
 %%%%%%%%%%%%%%%%%%
-\input{tex/labo4.tex}
+%\input{tex/labo4.tex}
+
+%%%%%%%%%%%%%%%%%%
+%--> PROPUESTA PROYECTO 0
+%%%%%%%%%%%%%%%%%%
+%\input{tex/proproy0.tex}
 
 %%%%%%%%%%%%%%%%%%
 %--> LABORATORIO 5
 %%%%%%%%%%%%%%%%%%
-%\input{tex/labo5.tex}
+\input{tex/labo5.tex}
 
 %%%%%%%%%%%%%%%%%%
 %--> LABORATORIO 6
@@ -127,7 +199,5 @@
 %\newpage
 %\bibliographystyle{plain}
 %\bibliography{bibliography}
-
-
 
 \end{document}
