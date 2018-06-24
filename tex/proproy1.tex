@@ -1,0 +1,135 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% --> INTRODUCCIÓN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Enunciado}
+
+El objetivo de este proyecto es familiarizar al estudiante con la programación forma de una
+estructura de datos y/o algoritmos clásicos utilizando C++, así como  su análisis y presentación.
+En particular este en este proyecto cada grupo deberá realizar el una implementación del tema
+seleccionado:
+
+\begin{itemize}
+    \item Problema de optimización: método exhaustivo vs. método heurístico(programación genética).
+\end{itemize}
+
+En cada caso se debe comparar las dos opciones y verificar tiempos de duración, funciones de duración
+y complejidades temporales para diferentes tamaños de N. Recuerde utilizar gráficas y tablas para
+sus datos y discutir los resultados.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% --> RESEÑA DEL ALGORITMO/ESTRUCTURA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Reseña del algoritmo/estructura}
+
+Los problemas de optimización consisten en la búsqueda de una solución a un problema, que optimice (maximice o minimice) el resultado en términos de una o más variables de ese problema. Usualmente contiene un espacio de posibles soluciones $X$, y una función $f$ que evalúa las posibles soluciones. Existe gran cantidad de enfoques en los métodos de optimización, algunas que utilizan técnicas basadas en el cálculo, búsquedas aleatorias o técnicas enumerativas \cite{R11}. 
+
+En este proyecto se analizarán dos enfoques específicos de algoritmos de optimización: los métodos exhaustivos y los algoritmos de programación genética. Ambos son métodos de tipo meta-heurístico, lo cual significa que son métodos que no dependen del problema específico a resolver; no tienen una prueba matemática rigurosa pero obtienen la solución buscada en todos los casos prácticos \cite{R11}. A continuación se explica brevemente el concepto detrás de estos tipos de algoritmos, y el problema que se utilizará para compararlos.
+
+\subsection{Método Exhaustivo}
+Los algoritmos exhaustivos son algoritmos que exploran todas las combinaciones posibles de elementos con el fin de encontrar la solución a un problema, por esto, también se les conoce como algoritmos de fuerza bruta \cite{R10}. A partir de un espacio de posibles soluciones, enumeran y evalúan cada una de estas para determinar si es la solución buscada para el problema. Estos algoritmos poseen la gran ventaja de ser capaces de encontrar la solución correcta de un problema determinado, no una aproximación; esto con una gran desventaja: su tiempo de ejecución aumenta de gran manera de acuerdo a la magnitud del problema. 
+
+
+A este tipo de algoritmos se les puede realizar modificaciones de acuerdo a lo que se desee como solución. En algunas situaciones se requiere obtener todo el conjunto de posibles soluciones, por lo que es necesario recorrer todas las posibilidades y almacenar las soluciones. También, se puede presentar la situación en que se busque la solución óptima, en donde de igual manera se debe recorrer todas las posibles soluciones y evaluar para reconocer cuál es la mejor opción.   
+
+\subsection{Método Heurístico (Programación Genética)}
+
+ La programación genética, es un tipo de programación perteneciente al grupo de los Algoritmos Genéticos. Estos algoritmos están basados en el proceso genético de los organismos vivos, establecido en la biología. A partir de una "población inicial" dada, se presentan una serie de eventos de selección, evaluación, mutación y cruce de individuos, dando paso a diferentes \emph{generaciones}. Conforme pasan las generaciones, en la naturaleza las poblaciones evolucionan de acuerdo con los principios de la Selección Natural y la supervivencia de los más fuertes. Esta es la idea detrás de los Algoritmos Genéticos, que básicamente, son algoritmos capaces de evolucionar, o mejorarse a sí mismos a partir de una solución propuesta de forma aleatoria, hasta encontrar la solución al problema, imitando la forma biológica de la Selección Natural. En este tipo de algoritmos se utilizan términos biológicos como ``población'', ``codones'', ``cromosomas'', para detallar el funcionamiento del algoritmo\cite{R12}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% --> FUNCIONAMIENTO DEL ALGORITMO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Funcionamiento del algoritmo/estructura}
+
+\subsection{Método Exhaustivo}
+
+El funcionamiento básico de este tipo de algoritmos consiste en probar o generar un elemento $c_0$  que puede ser solución de cierto problema $P$. Si se cumple que este elemento $c_0$ es solución, se termina el programa, pero si no es solución, se repite el procedimiento con un elemento $c_1$ y así continuamente hasta agotar el conjunto de posibles soluciones, es decir, hasta el elemento $c_n$, asumiendo que este conjunto es finito y de dimensión $n$. Como se mencionó anteriormente, la desventaja se presenta por que en el peor de los casos la solución es el último elemento o simplemente no existe, por lo que el algoritmo debe recorrer toda la magnitud $n$ del problema; si $n\rightarrow \infty$, tardaría un tiempo infinito, lo anterior no se puede presentar en informática, pero nos indica que tardaría mucho tiempo en realizarse. 
+
+\begin{table}[H]
+\centering
+\caption{Pseudocódigo del algoritmo de fuerza bruta.}
+\label{T:exh}
+\begin{tabular}{l}
+    \hline
+   \cellcolor{lightgray} \textbf{Algoritmo}. Búsqueda por fuerza bruta \\
+    \hline
+    \hline
+     
+     $\cdot$ \textbf{Begin}:\\
+     \hspace{0.6cm} $\cdot$ c $\leftarrow$ Primero(P)\\
+     \hspace{0.6cm} $\cdot$ \textbf{While not} c = NULL \textbf{do}:\\
+     \hspace{1.2cm} $\cdot$ \textbf{If} tamaño Valido(P,c) \textbf{do}:\\
+     \hspace{1.8cm} Mostrar(P,c) \\\hspace{1.2cm}  $\cdot$  c $\leftarrow$ Siguiente(P,c)\\
+     \hspace{0.6cm} $\cdot$ \textbf{End}\\
+     $\cdot$ \textbf{End}\\
+    \hline
+\end{tabular}
+\end{table}
+
+
+\subsection{Método Heurístico (Programación Genética)}
+ De forma más detallada, estos algoritmos trabajan con una población o conjunto de individuos que representan posibles soluciones al problema tratado. A estas posibles soluciones se les asigna un valor con el cual se va a trabajar, entre más grande sea la adaptación de esta solución al problema, mayor es la probabilidad de que esta solución sea seleccionada para "reproducirse", y así "cruza" su material genético con otro individuo o solución seleccionada de la misma forma. Esta reproducción generará nuevos individuos (soluciones), también llamados descendientes, los cuales poseen ciertas características "heredadas" de sus "padres"\cite{R12}. 
+
+Una parte primordial del funcionamiento del algoritmo es una función que modela la adaptación del individuo, es decir, al evaluar la solución en ella, nos indica que tan buena o apta es esta solución.  Cuanto menor sea la adaptación de un individuo, menor es la probabilidad de que dicha solución
+sea seleccionado para la reproducción, y por tanto de que su "material genético" se herede en sucesivas
+generaciones.
+\begin{table}[H]
+\centering
+\caption{Pseudocódigo del algoritmo genético.}
+\label{T:gen}
+\begin{tabular}{l}
+    \hline
+   \cellcolor{lightgray} \textbf{Algoritmo}. Optimización genética \\
+    \hline
+    \hline
+     $\cdot$ \textbf{Begin}:\\
+     \hspace{0.6cm} $\cdot$ Generar una población inicial.\\
+     \hspace{0.6cm} $\cdot$ Computar la función de evaluación de cada individuo.\\
+     \hspace{0.6cm} $\cdot$ \textbf{While not} terminado \textbf{do}:\\
+     \hspace{0.6cm} $\cdot$ \textbf{Begin}:\\
+     \hspace{1.2cm} $\cdot$ \textbf{For} tamaño población \textbf{do}:\\
+     \hspace{1.2cm} $\cdot$ \textbf{Begin}:\\
+     \hspace{1.8cm} $\Rightarrow$ \texttt{Seleccionar} dos individuos de la anterior generación, para el cruce\\\hspace{1.8cm} (probabilidad de selección proporcional a la función de evaluación del individuo).\\
+     \hspace{1.8cm} $\Rightarrow$ \texttt{Cruzar} con cierta probabilidad los dos individuos  obteniendo dos \\\hspace{1.8cm} descendientes. \\
+     \hspace{1.8cm} $\Rightarrow$ \texttt{Mutar} los dos descendientes con cierta probabilidad. \\
+     \hspace{1.8cm} $\Rightarrow$ \texttt{Computar} la función de evaluación de los dos descendientes mutados.\\
+     \hspace{1.8cm} $\Rightarrow$ \texttt{Insertar} los dos descendientes mutados en la nueva generación.\\
+     \hspace{1.2cm} $\cdot$ \textbf{End}\\
+     \hspace{1.2cm} $\cdot$ \textbf{If}  la población ha convergido \textbf{then}\\
+     \hspace{1.2cm} $\cdot$ Terminado = \textbf{True}\\
+     \hspace{0.6cm} $\cdot$ \textbf{End}\\
+     $\cdot$ \textbf{End}\\
+     
+    \hline
+\end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% --> EXPERIMENTOS QUE SE REALIZARAN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Experimentos que se realizarán}
+
+El experimento que se utilizará para probar la eficacia y tiempos de ejecución de los algoritmos consiste en una versión modificada del \textit{Problema de las 8 Reinas}. En este caso se buscará maximizar el área cubierta por antenas de telecomunicaciones. 
+
+Cada antena cuenta con cierto radio de acción fijo $r$ e igual entre todas, se dispondrá de una cantidad fija $n$ de antenas, que deben colocarse en un terreno de dimensiones $a \cdot b$ maximizando el área cubierta, como se mencionó anteriormente. 
+
+En el programa a desarrollar se representará el terreno como una matriz o arreglo bidimensional, a las antenas se les asignará una letras y se definirá su radio de acción como una cuadrícula 3x3 centrada en la posición de la antena. Siguiendo estas condiciones se aplicarán los algoritmos para encontrar las soluciones.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% --> BIBLIOGRAFIA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{IEEE}
+
+\bibitem{R10} Rodríguez, L. Varona, A. \textbf{\textit{Técnicas de diseño de algoritmos: Búsqueda exhaustiva}}. Departamento de Electricidad y Electrónica,
+Facultad de Ciencia y Tecnología, UPV/EHU. Visto el 17 de Junio del 2018 en: \url{https://ocw.ehu.eus/pluginfile.php/9411/mod_resource/content/1/04_Busqueda_Exhaustiva/04_Busqueda_Exhaustiva_v2.pdf}
+
+\bibitem{R11} Peña, J. \textbf{\textit{Heuristic Optimization: Introduction and Simple Heuristics}}. Universidad Politécnica de Madrid. Visto el 19 de Junio del 2018 en: \url{http://mat.uab.cat/~alseda/MasterOpt/IntroHO.pdf}
+
+\bibitem{R12} Lozano Alonso, J. A. \textbf{\textit{Algoritmos Genéticos Aplicados a la Clasificación no Supervisada}}.University of the Basque Country, 1998. Visto el 20 de Junio del 2018 en: \url{http://www.sc.ehu.es/ccwbayes/docencia/mmcc/docs/temageneticos.pdf}
+
+
+\end{thebibliography}

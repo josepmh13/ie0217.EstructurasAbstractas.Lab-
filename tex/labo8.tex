@@ -3,6 +3,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introducción}
 
+Las pilas y colas son estructuras de datos que se utilizan generalmente para simplificar ciertas operaciones de programación. Estas estructuras pueden implementarse mediante arrays o mediante listas enlazadas. 
+
+Las pilas son estructuras de datos que tienes dos operaciones básicas: push (para insertar un elemento) y pop (para extraer un elemento). Su característica fundamental es que al extraer se obtiene siempre el último elemento que acaba de insertarse. Por esta razón también se conocen como estructuras de datos LIFO (del inglés Last In First Out).Las pilas se utilizan en muchas aplicaciones que utilizamos con frecuencia. Por ejemplo, la gestión de ventanas en Windows (cuando cerramos una ventana siempre recuperamos la que teníamos detrás). Otro ejemplo es la evaluación general de cualquier expresión matemática para evitar tener que calcular el número de variables temporales que hacen falta. Las colas también son llamadas FIFO (First In First Out), que quiere decir \"el primero que entra es el primero que sale\". \cite{R3} 
+
+En este laboratorio se va a trabajar con tipo de estructura de datos para la implementación de funciones básicas y posibles aplicaciones de este tipo de estructuras de datos.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % --> OBJETIVOS
@@ -16,7 +21,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Objetivo General}
 \begin{itemize}
-\item 
+\item Implementar las estructuras de datos abstractos Stack, Queue utilizando plantillas, herencia y POO en C++, siguiendo el desarrollo hecho en el laboratorio anterior.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -24,25 +29,50 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Objetivos Específicos}
 \begin{itemize}
-\item 
-\item 
-\item 
-\item
-\item 
+\item Implementar una función en C++ que verifique si una hilera de caracteres tiene los paréntesis, llaves y paréntesis cuadrados balanceados.
+\item Implementar una función en C++ que simule la operación de un sistema operativo al aten-
+der procesos.
+\item Utilizar estructuras de datos de pilas (stack) y  colas (queue).
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % --> ENUNCIADO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\newpage
+\newpage
 
-%\includepdf[pages=1,pagecommand=\section{Enunciado}, scale=0.8]{enunciados/enun4} 
-%\includepdf[pages=2,pagecommand={},scale=0.8]{enunciados/enun4}
+\includepdf[pages=1,pagecommand=\section{Enunciado}, scale=0.8]{enunciados/enun8} 
+\includepdf[pages=2,pagecommand={},scale=0.8]{enunciados/enun8}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % --> SOLUCIÓN
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Solución}
+
+%--------------------------------------------------------------
+\subsection{Cola}
+%--------------------------------------------------------------
+La cola es un caso especial de una lista con punteros, ya que tiene condiciones especiales que debe cumplir. Una cola tiene una estructura de tipo FIFO (first in first out) es decir, el primer elemento que entra a la estructura es el primer elemento en salir. Por lo tanto, para seguir estas restricciones, utilizando los métodos expuestos en la clase List.h, habrán algunos que no serán implementados pues no tienen sentido en una cola. Por lo tanto se proceden a implementar los siguientes:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.35\textwidth]{imgs/Labo8/cola.png}
+\caption{Estructura de datos tipo cola}
+\label{fig:cola}
+\end{figure}
+
+%--------------------------------------------------------------
+\subsection{Pila}
+%--------------------------------------------------------------
+
+La pila básicamente es una lista con punteros que tiene ciertas restricciones. Una pila es una estructura tipo LIFO (last in first out) de manera entonces que el último elemento que entra es el único que puede salir. Debido a esta restricción entonces limita un poco la implementación de todos los métodos definidos en la clase abstracta List.h que podemos observar en la sección 2.2. Tomando esto en cuenta nos damos que de los métodos virtuales puros solo podemos implementar los siguientes.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.35\textwidth]{imgs/Labo8/pila.png}
+\caption{Estructura de datos tipo pila}
+\label{fig:pila}
+\end{figure}
+
 
 
 \begin{minted}[linenos,autogobble,bgcolor=bg,breaklines,fontsize=\footnotesize ]{c++}
@@ -76,14 +106,88 @@ class FileUtil
 };
 \end{minted}
 
+\subsection{Revisar paréntesis balanceados}
+Para revisar que la hilera tenga los paréntesis debidamente balanceados se implementó el siguiente código. Se utiliza una estructura tipo \texttt{Stack} para realizar la verificación, en conjunto con varias condiciones \texttt{if}. 
 
+\begin{minted}[linenos,autogobble,bgcolor=bg,breaklines,fontsize=\footnotesize ]{c++}
+bool Brackets(char opening, char closing)
+{
+	if( opening == '(' && closing == ')' ) return true;
+	else if ( opening == '[' && closing == ']' ) return true;
+	else if ( opening == '{' && closing == '}' ) return true;
+	return false;
+}
+
+bool checkBalancedParentheses(string b)
+{
+	Stack<char> a;
+	for(unsigned int i = 0; i < b.length(); i++)
+	{
+	    if( b[i] == '(' || b[i] == '{' || b[i] == '[' )
+	        a.insert(b[i]);
+        else if( b[i] == ')' || b[i] == '}' || b[i] == ']' )
+        {
+            if( a.empty() || !Brackets( a.top(), b[i] ) )
+                return false;
+            else
+                a.remove();
+        }
+    }
+    return a.empty();
+}
+\end{minted}
+
+\subsection{Procesos}
+Para la simulación del entendimiento de procesos como si fuese un sistema operativo se creó un nuevo archivo \texttt{process.hpp}. Este archivo contiene un \texttt{string name} y un \texttt{int ID} como variables para simular el nombre del proceso y el número de identificación que le asignaría un sistema operativo. 
+
+\begin{minted}[linenos,autogobble,bgcolor=bg,breaklines,fontsize=\footnotesize ]{c++}
+#ifndef PROCESS_HPP
+#define PROCESS_HPP
+
+#include<iostream>
+#include<stdlib>
+
+class Process
+{
+  public:
+    string name;
+    int ID;
+    unsigned int slice;
+  protected:
+  private:
+};
+
+#endif /* PROCESS_HPP */
+\end{minted}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % --> RESULTADOS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Resultados}
 
+\subsection{Función \texttt{checkBalancedParentheses}}
+En el programa principal se crean dos strings de prueba, uno con paréntesis balanceados y otro desbalanceado, para probar el funcionamiento de esta función.
 
+\begin{minted}[linenos,autogobble,bgcolor=bg,breaklines,fontsize=\footnotesize ]{c++}
+  string test = "{(NJFNJEFE     [DWFEWFW] )}";
+  string test2 = "{[2*(4-3j)]-[14j+35)]}";
+  cout << test << endl;
+  if(checkBalancedParentheses(test)) cout<<"-> Balanceado"<<endl<<endl<<endl;
+  else cout<<"-> No Balanceado"<<endl<<endl<<endl;
+  
+  cout << test2 << endl;
+  if(checkBalancedParentheses(test2)) cout<<"-> Balanceado"<<endl<<endl<<endl;
+  else cout<<"-> No Balanceado"<<endl<<endl<<endl;
+\end{minted}
+
+Al hacer esto se obtiene el resultado mostrado en la figura \ref{fig:res_check}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{imgs/Labo8/res_check}
+\caption{Resultado de la prueba de \texttt{checkBalancedParentheses}}
+\label{fig:res_check}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % --> CONCLUSIONES
@@ -94,10 +198,9 @@ class FileUtil
 Como conclusiones se tiene que:
 
 \begin{itemize}
-\item 
-\item 
-\item 
-\item 
+\item Se implementaron las estructuras de datos \texttt{Stack} y \texttt{Queue} utilizando las plantillas del laboratorio anterior.
+\item Se implementó una función \texttt{checkBalancedParentheses()} que verifica que una hilera tenga los paréntesis balanceados.
+\item Se implementó una función \texttt{serveProcess()} que simula la operación de un sistema operativo al entender procesos.
 \end{itemize}
 
 
@@ -108,5 +211,8 @@ Como conclusiones se tiene que:
 \bibitem{R1} Talens, S. \textbf{\textit{Curso de programación en C++}}. EUI (UPV) Valencia, 17 al 28 de Julio de 1995. 
 
 \bibitem{R2} Raffo, E. \textbf{\textit{Programación genérica en C++, usando Metaprogramación}}. 2007. Sistemas de Informática. 
+
+\bibitem{R3} Quevedo, E.; López, R. \& Asencio, A. \textbf{\textit{Programación. Tema 4: Pilas y Colas}}. 2014. Sistemas de Informática. 
+
 \end{thebibliography}
 
